@@ -1,0 +1,88 @@
+Standard API
+
+{root.api}/{version}/{grouping}/{endpoint}
+SAMPLE :
+http://mern-api.kabayancoding.com/v1/auth/login
+
+Standard Status Response
+
+200 - OK                        --> Success
+201 - Created                   --> Post Success
+400 - Bad Request               --> Error on Client Side (Bisa salah input, dll)
+401 - Unathorized               --> User not authorized to the request.
+403 - Forbidden                 --> User not allowed to access.
+404 - Not Found                 --> Request endpoint not found.
+500 - Internal Server Error     --> Error on Server Side.
+502 - Bad Gateway               --> Invalid Response From Another Request.
+
+GROUP: Authentication
+
+[1] - Register
+{root.api}/{version}/auth/register
+
+req:
+{
+    "name": "Testing",
+    "email": "test@gmail.com",
+    "password": "12345678"
+}
+
+res:
+{
+    "message": "Register Success",
+    "data": {
+        "id": 1,
+        "name": "Testing",
+        "email": "test@gmail.com",
+        "password": "12345678"
+    }
+}
+
+err-response:
+400 -> Input yang anda masukkan tidak valid.
+
+
+
+[2] - Login
+{root.api}/{version}/auth/login
+
+req:
+{
+    ...
+}
+
+GROUP: BLOG
+[1] - Create Blog Post
+[POST] : {root.api}/{version}/blog/post
+
+req:
+{
+    "title" : "Title Blog",
+    "image" : "imgfile.jpg",
+    "body" : "lorem blbalbala"
+}
+
+res:
+{
+    "message": "Create Blog Post Success",
+    "data": {
+        "post_id": 1,
+        "title": "Title Blog",
+        "image": "imgfile.jpg",
+        "body": "lorem blbalbala",
+        "created_at": "25/11/2020",
+        "author": {
+            "uid": 1,
+            "name": "Testing"
+        }
+    }
+}
+
+err-response:
+201 -> Blog Post Berhasil Dibuat
+400 -> Input yang anda masukkan tidak valid
+
+
+[2] - Get Blog Post
+[3] - Update Blog Post
+[4] - Delete Blog Post
